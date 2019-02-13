@@ -1,0 +1,66 @@
+<section class="todoapp">
+  <header class="header">
+    <h1>Todo</h1>
+    <!-- controller (todo.component.ts) -->
+    <input class="new-todo" placeholder="What needs to be done?" [(ngModel)]="newTodo" (keyup.enter)="addTodo()"
+      autofocus>
+    <input class="new-todo" placeholder="What time needs to be done?" [(ngModel)]="newTime" (keyup.enter)="addTodo()"
+      autofocus>
+    <input class="new-todo" placeholder="Items needed to complete task?" [(ngModel)]="newDescription" (keyup.enter)="addTodo()"
+      autofocus>
+  </header>
+  <section class="main">
+
+    <label for="toggle-all">Mark all as complete</label>
+    <input id="toggle-all" class="toggle-all" type="checkbox">
+
+    <ul class="todo-list">
+      <!-- These are here just to show the structure of the list items -->
+      <!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
+      <!-- *ngFor: iterates through the todos array that we defined in the component and assigned in the let todo part  -->
+      <li *ngFor="let todo of todos" [ngClass]="{completed: todo.isDone, editing: todo.editing}">
+        <div class="view">
+          <input class="toggle" type="checkbox" [checked]="todo.isDone">
+
+          <!-- todo.title is pulling from the service which is imported into todo.components.ts -->
+          <label>{{todo.title}}</label>
+          
+
+          <!-- deletes items, the listener -->
+          <button class="destroy" (click)="destroyTodo(todo)"></button>
+        </div>
+        <!-- #updateTodo is a local var -->
+        <!-- blur updates when enter is hit or click somewhere else -->
+        <!-- provides a double click feature to edit listed items -->
+        <!-- all moved to details component -->
+        <!-- <input class="edit" #updatedTodo [value]="todo.title" (blur)="updateTodo(todo, updatedTodo.value)"
+          (keyup.escape)="todo.editing = false" (keyup.enter)="updateTodo(todo, updatedTodo.value)">
+
+        <input class="edit" #updatedTime [value]="todo.time" (blur)="updateTime(todo, updatedTime.value)"
+          (keyup.escape)="todo.editing = false" (keyup.enter)="updateTime(todo, updatedTime.value)">
+
+        <input class="edit" #updatedDescription [value]="todo.description" (blur)="updateDescription(todo, updatedDescription.value)"
+          (keyup.escape)="todo.editing = false" (keyup.enter)="updateDescription(todo, updatedDescription.value)"> -->
+      </li>
+    </ul>
+  </section>
+  <!-- This footer should hidden by default and shown when there are todos -->
+  <footer class="footer">
+    <span class="todo-count"><strong>{{activeTasks}}</strong> item left</span>
+    <ul class="filters">
+      <li>
+        <a [routerLink]="['/all']" [class.selected]="path === 'all'">All</a>
+      </li>
+      <li>
+        <a [routerLink]="['/active']" [class.selected]="path === 'active'">Active</a>
+      </li>
+      <li>
+        <a [routerLink]="['/completed']" [class.selected]="path === 'completed'">Completed</a>
+      </li>
+    </ul>
+    <button class="clear-completed" (click)="clearCompleted()">Clear completed</button>
+  </footer>
+</section>
+<div>
+  <button class="btn" routerLink="/main/taskId" routerLinkActive="active">Click Here to See Details/Edit todo list</button>
+</div>

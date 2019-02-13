@@ -1,0 +1,23 @@
+<ul class="todo-list">
+  <ol>
+    <li *ngFor="let todo of todos" [ngClass]="{completed: todo.isDone, editing: todo.editing}">
+      <h4>Task: {{todo.title}}</h4>
+      <h4>Time: {{todo.time}}</h4>
+      <h4>Description: {{todo.description}}</h4>
+      <label (dblclick)="todo.editing = true"></label>
+      <label (dblclick)="todo.editing = true"></label>
+      <label (dblclick)="todo.editing = true"></label><br />Task:
+
+      <input class="edit" #updatedTodo [value]="todo.title" (blur)="updateTodo(todo, updatedTodo.value)" (keyup.escape)="todo.editing = false"
+        (keyup.enter)="updateTodo(todo, updatedTodo.value)"><br />Time:
+
+      <input class="edit" #updatedTime [value]="todo.time" (blur)="updateTime(todo, updatedTime.value)" (keyup.escape)="todo.editing = false"
+        (keyup.enter)="updateTime(todo, updatedTime.value)"><br />Description:
+
+      <input class="edit" #updatedDescription [value]="todo.description" (blur)="updateDescription(todo, updatedDescription.value)"
+        (keyup.escape)="todo.editing = false" (keyup.enter)="updateDescription(todo, updatedDescription.value)"><br />
+
+      <button class="destroy" (click)="destroyTodo(todo)">Delete</button>
+    </li><br />
+  </ol>
+  <button class="btn" routerLink="/all" routerLinkActive="active">Back To Tasks</button>

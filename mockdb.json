@@ -1,0 +1,15 @@
+{
+    "tasks": [
+        {
+            "id": 0,
+            "title": "Finish by tonight",
+            "completed": " "
+        },
+        {
+            "name": "Finish Angular final project",
+            "time to complete": "Several hours",
+            "description": "Exeter, laptop, wifi access",
+            "notes": "Complete and turn in Angular final project before the assigned deadline"
+        }
+    ]
+}
